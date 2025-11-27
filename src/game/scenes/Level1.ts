@@ -122,7 +122,7 @@ export class Level1 extends Scene {
 
     // Initial instruction
     this.instructionsTxt = this.add
-      .text(512, 410, "Click to Start", {
+      .text(512, 410, "Click to Start, Arrows to move", {
         fontSize: "40px",
         color: "#ffffffff",
         stroke: "#000000",
@@ -198,6 +198,9 @@ export class Level1 extends Scene {
     this.computer.setVelocity(0, 0);
     this.computer.setPosition(974, 369);
     this.instructionsTxt.visible = true;
+    // Win logic
+    if (this.playerScore >= 2) {
+    }
   }
 
   launchBall() {
