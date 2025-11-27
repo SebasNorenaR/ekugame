@@ -16,7 +16,7 @@ export class MainMenu extends Scene {
 
     this.title = this.add
       .text(512, 460, "Main Menu", {
-        fontFamily: "Arial Black",
+        fontFamily: "Pixeloid",
         fontSize: 38,
         color: "#ffffff",
         stroke: "#000000",
@@ -27,6 +27,13 @@ export class MainMenu extends Scene {
 
     this.input.once("pointerdown", () => {
       this.scene.start("Game");
+    });
+    this.title.setInteractive({ useHandCursor: true });
+    this.title.on("pointerover", () => {
+      this.title.setStyle({ fill: "yellow" });
+    });
+    this.title.on("pointerout", () => {
+      this.title.setStyle({ fill: "white" });
     });
   }
 }

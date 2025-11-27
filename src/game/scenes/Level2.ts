@@ -7,7 +7,7 @@ export class Level2 extends Scene {
   }
 
   create() {
-    this.msg_text = this.add.text(512, 384, "level 2", {
+    this.msg_text = this.add.text(20, 20, "level 2", {
       fontFamily: "Arial Black",
       fontSize: 38,
       color: "#ffffff",
@@ -15,7 +15,7 @@ export class Level2 extends Scene {
       strokeThickness: 8,
       align: "center",
     });
-    this.msg_text.setOrigin(0.5);
+    // this.msg_text.setOrigin(0.5);
     this.input.once("pointerdown", () => {
       this.scene.start("Game");
     });
