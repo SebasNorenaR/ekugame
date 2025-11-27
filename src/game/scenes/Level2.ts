@@ -10,6 +10,7 @@ export class Level2 extends Scene {
   gameStarted: boolean = false;
   scoreText: Phaser.GameObjects.Text;
   livesText: Phaser.GameObjects.Text;
+  instructionsTxt: Phaser.GameObjects.Text;
   score: number = 0;
   lives: number = 3;
 
@@ -29,19 +30,19 @@ export class Level2 extends Scene {
     this.score = 0;
     this.lives = 3;
     // --- HUD ---
-    this.msg_text = this.add.text(20, 20, "Level 2: Destructoid", {
-      fontFamily: "Arial Black",
+    // this.msg_text = this.add.text(20, 20, "Level 2: Destructoid", {
+    //   fontSize: 38,
+    //   color: "#ffffff",
+    //   stroke: "#000000",
+    //   strokeThickness: 8,
+    //   align: "center",
+    // });
+
+    this.exitBtn = this.add.text(20, 20, "exit", {
       fontSize: 38,
       color: "#ffffff",
       stroke: "#000000",
       strokeThickness: 8,
-      align: "center",
-    });
-
-    this.exitBtn = this.add.text(200, 20, "Exit", {
-      fontFamily: "Pixeloid",
-      fontSize: 38,
-      color: "#ffffff",
       align: "center",
     });
     this.exitBtn.setInteractive({ useHandCursor: true });
@@ -58,13 +59,15 @@ export class Level2 extends Scene {
     this.scoreText = this.add.text(800, 20, "Score: 0", {
       fontSize: "30px",
       color: "#ffffff",
-      fontFamily: "Arial",
+      stroke: "#000000",
+      strokeThickness: 8,
     });
 
     this.livesText = this.add.text(800, 60, "Lives: 3", {
       fontSize: "30px",
       color: "#ffffff",
-      fontFamily: "Arial",
+      stroke: "#000000",
+      strokeThickness: 8,
     });
 
     // 1. Create Graphics
@@ -117,6 +120,7 @@ export class Level2 extends Scene {
       if (!this.gameStarted) {
         this.launchBall();
         this.gameStarted = true;
+        this.instructionsTxt.visible = false;
       }
     });
 
@@ -135,6 +139,16 @@ export class Level2 extends Scene {
       undefined,
       this
     );
+
+    // Initial instruction
+    this.instructionsTxt = this.add
+      .text(512, 410, "Click to Start, Arrows to move", {
+        fontSize: "40px",
+        color: "#ffffffff",
+        stroke: "#000000",
+        strokeThickness: 8,
+      })
+      .setOrigin(0.5);
   }
 
   createBricks() {
@@ -225,6 +239,7 @@ export class Level2 extends Scene {
     if (this.lives <= 0) {
       this.resetGame();
     }
+    this.instructionsTxt.visible = true;
   }
 
   resetGame() {
