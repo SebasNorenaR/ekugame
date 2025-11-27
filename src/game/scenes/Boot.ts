@@ -17,7 +17,7 @@ export class Boot extends Scene {
       frameHeight: 64,
     });
 
-    this.load.image("objective", "assets/objective.png");
+    this.load.image("objective", "assets/objective2.png");
   }
 
   create() {
