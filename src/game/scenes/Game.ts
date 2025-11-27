@@ -13,6 +13,7 @@ export class Game extends Scene {
   objectives: ObjectiveConfig[] = [];
   keys: any;
   cursors: Phaser.Types.Input.Keyboard.CursorKeys;
+  playerScale: number = 1.5;
 
   constructor() {
     super("Game");
@@ -20,10 +21,10 @@ export class Game extends Scene {
 
   create() {
     this.camera = this.cameras.main;
-    this.camera.setBackgroundColor(0x00ff00);
+    // this.camera.setBackgroundColor(0x00ff00);
 
-    this.background = this.add.image(512, 384, "background");
-    this.background.setAlpha(0.5);
+    this.background = this.add.image(512, 384, "hq");
+    // this.background.setAlpha(1);
 
     // Input Events
     if (this.input.keyboard === null) {
@@ -32,7 +33,7 @@ export class Game extends Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
 
     const OBJ_TEXTURE = "objective";
-    this.objectives.push(this.createObjective(100, 200, OBJ_TEXTURE, "Level1"));
+    this.objectives.push(this.createObjective(425, 355, OBJ_TEXTURE, "Level1"));
     this.objectives.push(this.createObjective(200, 200, OBJ_TEXTURE, "Level2"));
     // this.objectives.push(this.createObjective(100, 500, OBJ_TEXTURE, "Level3"));
 
@@ -46,6 +47,7 @@ export class Game extends Scene {
     this.player.setOrigin(0.5);
     this.player.play("walk");
     this.player.setPosition(100, 100);
+    this.player.setScale(this.playerScale);
 
     this.keys = this.input.keyboard?.addKeys("SPACE");
   }
@@ -62,10 +64,10 @@ export class Game extends Scene {
       this.player.y += 5;
     } else if (this.cursors.left.isDown) {
       this.player.x -= 5;
-      this.player.scaleX = -1;
+      this.player.scaleX = -this.playerScale;
     } else if (this.cursors.right.isDown) {
       this.player.x += 5;
-      this.player.scaleX = 1;
+      this.player.scaleX = this.playerScale;
     }
 
     this.objectives.forEach((objConfig) => {
