@@ -25,6 +25,10 @@ export class Level1 extends Scene {
   }
 
   create() {
+    // reset state to default values
+    this.playerScore = 0;
+    this.computerScore = 0;
+    this.gameStarted = false;
     // this.msg_text = this.add.text(20, 20, "level 1", {
     //   fontSize: 38,
     //   color: "#ffffff",

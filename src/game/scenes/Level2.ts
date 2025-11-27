@@ -25,6 +25,9 @@ export class Level2 extends Scene {
   }
 
   create() {
+    this.gameStarted = false;
+    this.score = 0;
+    this.lives = 3;
     // --- HUD ---
     this.msg_text = this.add.text(20, 20, "Level 2: Destructoid", {
       fontFamily: "Arial Black",
