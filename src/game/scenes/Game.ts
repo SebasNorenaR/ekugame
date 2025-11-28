@@ -33,11 +33,11 @@ export class Game extends Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
 
     const OBJ_TEXTURE = "objective";
-    this.objectives.push(this.createObjective(425, 355, OBJ_TEXTURE, "Level1"));
-    this.objectives.push(this.createObjective(200, 200, OBJ_TEXTURE, "Level2"));
-    this.objectives.push(this.createObjective(100, 100, OBJ_TEXTURE, "Level3"));
+    this.objectives.push(this.createObjective(400, 340, OBJ_TEXTURE, "Level1"));
+    this.objectives.push(this.createObjective(580, 180, OBJ_TEXTURE, "Level2"));
+    this.objectives.push(this.createObjective(100, 500, OBJ_TEXTURE, "Level3"));
 
-    this.player = this.add.sprite(0, 0, "robot");
+    this.player = this.add.sprite(200, 369, "robot");
     this.anims.create({
       key: "walk",
       frames: this.anims.generateFrameNumbers("robot", { frames: [0, 1] }),
@@ -46,7 +46,6 @@ export class Game extends Scene {
     });
     this.player.setOrigin(0.5);
     this.player.play("walk");
-    this.player.setPosition(100, 100);
     this.player.setScale(this.playerScale);
 
     this.keys = this.input.keyboard?.addKeys("SPACE");

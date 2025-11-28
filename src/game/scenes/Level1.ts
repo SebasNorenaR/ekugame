@@ -1,6 +1,7 @@
 import { Scene } from "phaser";
 
 export class Level1 extends Scene {
+  backgroundImg: Phaser.GameObjects.Image;
   msg_text: Phaser.GameObjects.Text;
   exitBtn: Phaser.GameObjects.Text;
   player: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
@@ -25,7 +26,8 @@ export class Level1 extends Scene {
   }
 
   create() {
-    this.cameras.main.setBackgroundColor("#99673f");
+    this.backgroundImg = this.add.image(0, 0, "pongBg");
+    this.backgroundImg.setOrigin(0);
     // reset state to default values
     this.playerScore = 0;
     this.computerScore = 0;
@@ -51,6 +53,7 @@ export class Level1 extends Scene {
     this.player = this.physics.add.sprite(50, 300, "paddleImg");
     this.player.setImmovable(true);
     this.player.setCollideWorldBounds(true);
+    this.player.tint = 0xfcc603;
 
     // Computer (Right side)
     this.computer = this.physics.add.sprite(974, 300, "paddleImg");
@@ -66,6 +69,7 @@ export class Level1 extends Scene {
     // Ball
     this.ball = this.physics.add.sprite(512, 369, "ballImg");
     this.ball.setCollideWorldBounds(true);
+    this.ball.tint = 0xfcc603
     this.ball.setBounce(1, 1); // Perfect elastic bounce
 
     ballParticles.startFollow(this.ball);

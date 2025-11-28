@@ -1,6 +1,7 @@
 import { Scene } from "phaser";
 
 export class Level2 extends Scene {
+  background: Phaser.GameObjects.Image;
   msg_text: Phaser.GameObjects.Text;
   exitBtn: Phaser.GameObjects.Text;
   player: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
@@ -30,6 +31,10 @@ export class Level2 extends Scene {
     this.score = 0;
     this.lives = 3;
 
+    this.background = this.add.image(0, 0, "arkanoidBg");
+    this.background.setOrigin(0);
+    this.background.tint = 0xadadad;
+
     // Create Graphics
     let graphics = this.add.graphics();
 
@@ -57,6 +62,7 @@ export class Level2 extends Scene {
     this.player = this.physics.add.sprite(512, 700, "paddleBreakout");
     this.player.setImmovable(true);
     this.player.setCollideWorldBounds(true);
+    this.player.tint = 0xfcc603;
 
     const ballParticles = this.add.particles(0, 0, "ekumenLogo", {
       speed: 100,
@@ -68,6 +74,7 @@ export class Level2 extends Scene {
     this.ball = this.physics.add.sprite(512, 660, "ballImg");
     this.ball.setCollideWorldBounds(true);
     this.ball.setBounce(1, 1);
+    this.ball.tint = 0xfcc603;
 
     ballParticles.startFollow(this.ball);
 
@@ -164,7 +171,7 @@ export class Level2 extends Scene {
         const brick = this.bricks.create(brickX, brickY, "brickImg");
 
         // Color tint based on row
-        const colors = [0xff0000, 0xffa500, 0xffff00, 0x00ff00, 0x0000ff];
+        const colors = [0xff0000, 0xffa500, 0xffff00, 0xff0000, 0xff0000];
         brick.setTint(colors[y]);
         brick.refreshBody();
       }
