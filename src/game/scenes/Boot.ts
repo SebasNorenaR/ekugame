@@ -27,6 +27,7 @@ export class Boot extends Scene {
     this.load.image("pongBg", "assets/pingpong copy.png");
     this.load.image("arkanoidBg", "assets/arkanoid_bg.jpeg");
     this.load.image("arkanoidEnemy", "assets/arkanoidenemy0.png");
+    this.load.image("winImage", "assets/win.jpg");
   }
 
   create() {

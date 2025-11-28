@@ -247,6 +247,9 @@ export class Level1 extends Scene {
     this.winMessage.setVisible(true);
     this.instructionsTxt.setVisible(false);
     this.gameStarted = false;
+    
+    // Set win flag in registry
+    this.registry.set("level1Won", true);
   }
 
   launchBall() {

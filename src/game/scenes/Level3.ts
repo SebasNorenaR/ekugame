@@ -111,6 +111,9 @@ export class Level3 extends Scene {
       this.ricochetImage.setVisible(false);
       this.instructionText.setText("Correct! Press EXIT to continue");
       this.inputText.setVisible(false);
+      
+      // Set win flag in registry
+      this.registry.set("level3Won", true);
     } else {
       // Incorrect answer - show nothing (just reset input)
       this.currentInput = "";

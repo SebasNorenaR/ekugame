@@ -33,9 +33,12 @@ export class Game extends Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
 
     const OBJ_TEXTURE = "objective";
+    
+    // Create all objectives but hide based on progress
     this.objectives.push(this.createObjective(420, 360, OBJ_TEXTURE, "Level1"));
     this.objectives.push(this.createObjective(580, 180, OBJ_TEXTURE, "Level2"));
     this.objectives.push(this.createObjective(167, 100, OBJ_TEXTURE, "Level3"));
+    this.objectives.push(this.createObjective(800, 200, OBJ_TEXTURE, "Level4"));
 
     this.player = this.add.sprite(200, 369, "robot");
     this.anims.create({
@@ -71,6 +74,12 @@ export class Game extends Scene {
 
     this.objectives.forEach((objConfig) => {
       const obj = objConfig.objSprite;
+      
+      // Skip if objective is not visible
+      if (!obj.visible) {
+        return;
+      }
+      
       if (
         Math.abs(obj.x - this.player.x) < 30 &&
         Math.abs(obj.y - this.player.y) < 30

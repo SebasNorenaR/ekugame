@@ -14,6 +14,9 @@ export class Level2 extends Scene {
   instructionsTxt: Phaser.GameObjects.Text;
   score: number = 0;
   lives: number = 3;
+  readmeImage: Phaser.GameObjects.Image;
+  winMessage: Phaser.GameObjects.Text;
+  hasWon: boolean = false;
 
   constructor() {
     super({
@@ -30,6 +33,7 @@ export class Level2 extends Scene {
     this.gameStarted = false;
     this.score = 0;
     this.lives = 3;
+    this.hasWon = false;
 
     this.background = this.add.image(0, 0, "arkanoidBg");
     this.background.setOrigin(0);
@@ -156,6 +160,29 @@ export class Level2 extends Scene {
       stroke: "#000000",
       strokeThickness: 8,
     });
+
+    // Create readme image (initially hidden)
+    this.readmeImage = this.add.image(512, 384, "readmepart");
+    this.readmeImage.setVisible(false);
+    this.readmeImage.setDepth(100); // Ensure it's on top
+    const readmeScaleX = 900 / this.readmeImage.width;
+    const readmeScaleY = 650 / this.readmeImage.height;
+    const readmeScale = Math.min(readmeScaleX, readmeScaleY, 1);
+    this.readmeImage.setScale(readmeScale);
+
+    // Win message (initially hidden)
+    this.winMessage = this.add
+      .text(512, 700, "You Won! Press EXIT to continue", {
+        fontSize: "32px",
+        color: "#fefefeff",
+        stroke: "#000000",
+        strokeThickness: 8,
+      })
+      .setOrigin(0.5)
+      .setDepth(101)
+      .setVisible(false);
+
+    this.hasWon = false;
   }
 
   createBricks() {
@@ -224,9 +251,10 @@ export class Level2 extends Scene {
     this.score += 10;
     this.scoreText.setText("Score: " + this.score);
 
-    // Win condition: Reset if all bricks are gone
-    if (this.bricks.countActive() === 0) {
-      this.resetGame();
+    // Win condition: Show win screen if score is more than 150
+    if (this.score > 150 && !this.hasWon) {
+      this.hasWon = true;
+      this.showWinScreen();
     }
   }
 
@@ -271,5 +299,20 @@ export class Level2 extends Scene {
     const dirX = Math.random() < 0.5 ? -1 : 1;
     // Launch upwards
     this.ball.setVelocity(200 * dirX, -500);
+  }
+
+  showWinScreen() {
+    // Stop the game
+    this.gameStarted = false;
+    this.ball.setVelocity(0, 0);
+    this.player.setVelocity(0, 0);
+    
+    // Show win elements
+    this.readmeImage.setVisible(true);
+    this.winMessage.setVisible(true);
+    this.instructionsTxt.setVisible(false);
+    
+    // Set win flag in registry
+    this.registry.set("level2Won", true);
   }
 }
