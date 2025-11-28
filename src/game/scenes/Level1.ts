@@ -36,35 +36,47 @@ export class Level1 extends Scene {
     this.computerScore = 0;
     this.gameStarted = false;
 
-    // Create Graphics (so we don't need image files)
+    // Create Graphics for ball only
     let graphics = this.add.graphics();
     graphics.fillStyle(0xffffff, 1);
 
-    // Paddle texture (10x100)
-    graphics.fillRect(0, 0, 20, 100);
-    graphics.generateTexture("paddleImg", 20, 100);
-
     // Ball texture (20x20)
-    graphics.clear();
-    graphics.fillStyle(0xffffff, 1);
     graphics.fillRect(0, 0, 20, 20);
     graphics.generateTexture("ballImg", 20, 20);
     graphics.destroy(); // Clean up graphics object
 
+    // Create paddle animations
+    this.anims.create({
+      key: "andinoPongIdle",
+      frames: this.anims.generateFrameNumbers("andinoPong", { start: 0, end: -1 }),
+      frameRate: 2,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "dantePongIdle",
+      frames: this.anims.generateFrameNumbers("dantePong", { start: 0, end: -1 }),
+      frameRate: 8,
+      repeat: -1,
+    });
+
     // Create Objects
-    // Player (Left side)
-    this.player = this.physics.add.sprite(50, 300, "paddleImg");
+    // Player (Left side) - using andino_pong sprite
+    this.player = this.physics.add.sprite(50, 300, "andinoPong");
     this.player.setImmovable(true);
     this.player.setCollideWorldBounds(true);
-    this.player.tint = 0xfcc603;
+    this.player.play("andinoPongIdle");
+    this.player.setScale(1.5, 2.3);
 
-    // Computer (Right side)
-    this.computer = this.physics.add.sprite(974, 300, "paddleImg");
+    // Computer (Right side) - using dante_pong sprite
+    this.computer = this.physics.add.sprite(974, 300, "dantePong");
     this.computer.setImmovable(true);
     this.computer.setCollideWorldBounds(true);
+    this.computer.play("dantePongIdle");
+    this.computer.setScale(1.5, 2.3);
 
     const ballParticles = this.add.particles(0, 0, "ekumenLogo", {
-      speed: 100,
+      speed: 80,
       scale: { start: 0.015, end: 0 },
       // blendMode: "ADD",
     });

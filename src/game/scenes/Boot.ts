@@ -17,6 +17,17 @@ export class Boot extends Scene {
       frameHeight: 64,
     });
 
+    // Pong paddle spritesheets
+    this.load.spritesheet("andinoPong", "assets/andino_pong.png", {
+      frameWidth: 64,
+      frameHeight: 64,
+    });
+
+    this.load.spritesheet("dantePong", "assets/dante_pong.png", {
+      frameWidth: 64,
+      frameHeight: 64,
+    });
+
     this.load.image("objective", "assets/objective2.png");
 
     this.load.image("ekumenLogo", "assets/ekumen_logo.png");
@@ -28,6 +39,10 @@ export class Boot extends Scene {
     this.load.image("arkanoidBg", "assets/arkanoid_bg.jpeg");
     this.load.image("winImage", "assets/win.jpg");
     this.load.spritesheet("arkanoidEnemy", "assets/arkanoid_enemy0.png", {
+    frameWidth: 64,
+      frameHeight: 64,
+    });
+    this.load.spritesheet("fabri", "assets/fabri.png", {
       frameWidth: 64,
       frameHeight: 64,
     });

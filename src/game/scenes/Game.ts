@@ -40,6 +40,19 @@ export class Game extends Scene {
     this.objectives.push(this.createObjective(167, 100, OBJ_TEXTURE, "Level3"));
     this.objectives.push(this.createObjective(800, 200, OBJ_TEXTURE, "Level4"));
 
+    // Create fabri animation
+    this.anims.create({
+      key: "fabriIdle",
+      frames: this.anims.generateFrameNumbers("fabri", { start: 0, end: -1 }),
+      frameRate: 8,
+      repeat: -1,
+    });
+
+    // Add fabri sprite
+    const fabriSprite = this.add.sprite(220, 140, "fabri");
+    fabriSprite.play("fabriIdle");
+    fabriSprite.setScale(1.3);
+
     this.player = this.add.sprite(200, 369, "robot");
     this.anims.create({
       key: "walk",
