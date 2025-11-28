@@ -6,6 +6,7 @@ import { AUTO, Game } from "phaser";
 import { Preloader } from "./scenes/Preloader";
 import { Level1 } from "./scenes/Level1";
 import { Level2 } from "./scenes/Level2";
+import { Level3 } from "./scenes/Level3";
 import { GameStory } from "./scenes/GameStory";
 
 //  Find out more information about the Game Config at:
@@ -24,6 +25,7 @@ const config: Phaser.Types.Core.GameConfig = {
     GameOver,
     Level1,
     Level2,
+    Level3,
     GameStory,
   ],
 };

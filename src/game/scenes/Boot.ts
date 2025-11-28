@@ -21,6 +21,8 @@ export class Boot extends Scene {
 
     this.load.image("ekumenLogo", "assets/ekumen_logo.png");
     this.load.image("storyBg", "assets/dialogue.png");
+    this.load.image("ricochetRobot", "assets/ricochet_robot.jpg");
+    this.load.image("readmepart", "assets/readmepart.jpg");
   }
 
   create() {
