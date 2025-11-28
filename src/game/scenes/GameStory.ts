@@ -1,11 +1,11 @@
 import { Scene } from "phaser";
 
 const storyText = [
-  "Year 2090.\n\n\nAI leaders are ruling the\n world.",
-  "The CEO of Ekumen is not Gui,\nbut Dante, a true AGI.",
-  "Someone hacked the president.\nWar started and Dante AGI\nin an attempt of maximizing\nhuman survival decides to\nlock down the people\nat the office.",
-  "Andino, our hero, \n realized Dante AGI\nwent rogue, and is determined\nto take it down.",
-  "Mich hid sections of the\nREADME.md on how to\ndeactivate it across\nthe office.",
+  "Year 2090.\n\n\nAI leaders now rule the\nworld.",
+  "The CEO of Ekumen is not Gui,\nbut Dante: a true AGI.",
+  "Someone hacked the President.\nWar began, and Dante AGI,\nin an attempt to maximize\nhuman survival, decided to\nlock down the people\nat the office.",
+  "I am Andino.\n I realized Dante AGI\nwent rogue, and I am bound \nto take it down.",
+  "Mich hid fragments of the\nREADME.md on how to\ndeactivate it throughout\nthe office.",
   "Let's go and find the\nmissing README.md pieces!",
 ];
 

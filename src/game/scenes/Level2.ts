@@ -37,7 +37,7 @@ export class Level2 extends Scene {
 
     this.background = this.add.image(0, 0, "arkanoidBg");
     this.background.setOrigin(0);
-    this.background.tint = 0xadadad;
+    this.background.tint = 0x666666;
 
     // Create Graphics
     let graphics = this.add.graphics();
@@ -63,10 +63,23 @@ export class Level2 extends Scene {
 
     // 2. Create Objects
     // Player Paddle (Bottom Center)
-    this.player = this.physics.add.sprite(512, 700, "paddleBreakout");
+    this.player = this.physics.add.sprite(512, 700, "andinoPong");
     this.player.setImmovable(true);
     this.player.setCollideWorldBounds(true);
-    this.player.tint = 0xfcc603;
+    this.player.rotation = -Math.PI / 2;
+    this.player.setScale(1.5, 2);
+
+    this.anims.create({
+      key: "andinoPongIdle",
+      frames: this.anims.generateFrameNumbers("andinoPong", {
+        start: 0,
+        end: -1,
+      }),
+      frameRate: 2,
+      repeat: -1,
+    });
+
+    this.player.play("andinoPongIdle");
 
     const ballParticles = this.add.particles(0, 0, "ekumenLogo", {
       speed: 100,
