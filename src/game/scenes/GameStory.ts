@@ -1,10 +1,14 @@
 import { Scene } from "phaser";
 
 const storyText = [
-  "Hello, my name is Andino,\nand I am here to save the\nremaining Ekumembers...",
-  "In the year 2125 the evil AI\n took control of HQ",
-  "I am here to destroy it!",
+  "Year 2090.\n\n\nAI leaders are ruling the\n world.",
+  "The CEO of Ekumen is not Gui,\nbut Dante, a true AGI.",
+  "Someone hacked the president.\nWar started and Dante\nin an attempt of maximizing\nhuman survival decides to\nlock down the people\nat the office.",
+  "Andino realized Dante\nwent rogue, and is determined\nto take it down.",
+  "Mich hid sections of the\nREADME.md on how to\ndeactivate it across\nthe office.",
+  "Let's go and find the\nmissing README.md pieces!",
 ];
+
 
 export class GameStory extends Scene {
   camera: Phaser.Cameras.Scene2D.Camera;
@@ -44,16 +48,15 @@ export class GameStory extends Scene {
     this.player.play("walk");
 
     this.keys = this.input.keyboard?.addKeys("SPACE");
-
     this.currentText = this.add.text(
-      280,
-      110,
+      250,
+      140,
       storyText[this.currentTextIndex],
       {
-        fontSize: 28,
+        fontSize: 30,
         color: "#ffffff",
         stroke: "#000000",
-        strokeThickness: 8,
+        strokeThickness: 10,
         align: "center",
       }
     );
