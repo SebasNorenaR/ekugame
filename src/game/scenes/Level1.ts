@@ -25,37 +25,11 @@ export class Level1 extends Scene {
   }
 
   create() {
+    this.cameras.main.setBackgroundColor("#99673f");
     // reset state to default values
     this.playerScore = 0;
     this.computerScore = 0;
     this.gameStarted = false;
-    // this.msg_text = this.add.text(20, 20, "level 1", {
-    //   fontSize: 38,
-    //   color: "#ffffff",
-    //   stroke: "#000000",
-    //   strokeThickness: 8,
-    //   align: "center",
-    // });
-
-    this.exitBtn = this.add.text(20, 20, "exit", {
-      fontSize: 38,
-      color: "#ffffff",
-      stroke: "#000000",
-      strokeThickness: 8,
-      align: "center",
-    });
-    this.exitBtn.setInteractive({ useHandCursor: true });
-    this.exitBtn.on("pointerdown", () => {
-      this.scene.start("Game");
-    });
-
-    this.exitBtn.on("pointerover", () => {
-      this.exitBtn.setStyle({ fill: "yellow" });
-    });
-
-    this.exitBtn.on("pointerout", () => {
-      this.exitBtn.setStyle({ fill: "white" });
-    });
 
     // Create Graphics (so we don't need image files)
     let graphics = this.add.graphics();
@@ -83,10 +57,18 @@ export class Level1 extends Scene {
     this.computer.setImmovable(true);
     this.computer.setCollideWorldBounds(true);
 
+    const ballParticles = this.add.particles(0, 0, "ekumenLogo", {
+      speed: 100,
+      scale: { start: 0.015, end: 0 },
+      // blendMode: "ADD",
+    });
+
     // Ball
     this.ball = this.physics.add.sprite(512, 369, "ballImg");
     this.ball.setCollideWorldBounds(true);
     this.ball.setBounce(1, 1); // Perfect elastic bounce
+
+    ballParticles.startFollow(this.ball);
 
     // Middle Line (Dashed)
     let line = this.add.graphics();
@@ -114,7 +96,7 @@ export class Level1 extends Scene {
     this.physics.add.collider(this.ball, this.player, this.hitPaddle);
     this.physics.add.collider(this.ball, this.computer, this.hitPaddle);
 
-    // 6. Score Text
+    // Score Text
     this.scoreText = this.add
       .text(512, 50, "0 - 0", {
         fontSize: "50px",
@@ -133,6 +115,26 @@ export class Level1 extends Scene {
         strokeThickness: 8,
       })
       .setOrigin(0.5);
+
+    this.exitBtn = this.add.text(20, 20, "exit", {
+      fontSize: 38,
+      color: "#ffffff",
+      stroke: "#000000",
+      strokeThickness: 8,
+      align: "center",
+    });
+    this.exitBtn.setInteractive({ useHandCursor: true });
+    this.exitBtn.on("pointerdown", () => {
+      this.scene.start("Game");
+    });
+
+    this.exitBtn.on("pointerover", () => {
+      this.exitBtn.setStyle({ fill: "yellow" });
+    });
+
+    this.exitBtn.on("pointerout", () => {
+      this.exitBtn.setStyle({ fill: "white" });
+    });
   }
 
   update(time: number, delta: number) {

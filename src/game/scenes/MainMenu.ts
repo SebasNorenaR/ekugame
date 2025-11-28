@@ -12,26 +12,26 @@ export class MainMenu extends Scene {
   create() {
     this.background = this.add.image(512, 384, "background");
 
-    this.title = this.add
-      .text(512, 460, "", {
-        fontFamily: "Pixeloid",
-        fontSize: 38,
-        color: "#ffffff",
-        stroke: "#000000",
-        strokeThickness: 8,
-        align: "center",
-      })
-      .setOrigin(0.5);
+    // this.title = this.add
+    //   .text(512, 460, "Main Menu", {
+    //     fontSize: 38,
+    //     color: "#ffffff",
+    //     stroke: "#000000",
+    //     strokeThickness: 8,
+    //     align: "center",
+    //   })
+    //   .setOrigin(0.5);
 
     this.input.once("pointerdown", () => {
-      this.scene.start("Game");
+      this.scene.start("GameStory");
     });
-    this.title.setInteractive({ useHandCursor: true });
-    this.title.on("pointerover", () => {
-      this.title.setStyle({ fill: "yellow" });
-    });
-    this.title.on("pointerout", () => {
-      this.title.setStyle({ fill: "white" });
-    });
+    
+    // this.title.setInteractive({ useHandCursor: true });
+    // this.title.on("pointerover", () => {
+    //   this.title.setStyle({ fill: "yellow" });
+    // });
+    // this.title.on("pointerout", () => {
+    //   this.title.setStyle({ fill: "white" });
+    // });
   }
 }

@@ -18,6 +18,9 @@ export class Boot extends Scene {
     });
 
     this.load.image("objective", "assets/objective2.png");
+
+    this.load.image("ekumenLogo", "assets/ekumen_logo.png");
+    this.load.image("storyBg", "assets/dialogue.png");
   }
 
   create() {

@@ -29,48 +29,8 @@ export class Level2 extends Scene {
     this.gameStarted = false;
     this.score = 0;
     this.lives = 3;
-    // --- HUD ---
-    // this.msg_text = this.add.text(20, 20, "Level 2: Destructoid", {
-    //   fontSize: 38,
-    //   color: "#ffffff",
-    //   stroke: "#000000",
-    //   strokeThickness: 8,
-    //   align: "center",
-    // });
 
-    this.exitBtn = this.add.text(20, 20, "exit", {
-      fontSize: 38,
-      color: "#ffffff",
-      stroke: "#000000",
-      strokeThickness: 8,
-      align: "center",
-    });
-    this.exitBtn.setInteractive({ useHandCursor: true });
-    this.exitBtn.on("pointerdown", () => {
-      this.scene.start("Game");
-    });
-    this.exitBtn.on("pointerover", () =>
-      this.exitBtn.setStyle({ fill: "yellow" })
-    );
-    this.exitBtn.on("pointerout", () =>
-      this.exitBtn.setStyle({ fill: "white" })
-    );
-
-    this.scoreText = this.add.text(800, 20, "Score: 0", {
-      fontSize: "30px",
-      color: "#ffffff",
-      stroke: "#000000",
-      strokeThickness: 8,
-    });
-
-    this.livesText = this.add.text(800, 60, "Lives: 3", {
-      fontSize: "30px",
-      color: "#ffffff",
-      stroke: "#000000",
-      strokeThickness: 8,
-    });
-
-    // 1. Create Graphics
+    // Create Graphics
     let graphics = this.add.graphics();
 
     // Paddle texture (Horizontal)
@@ -98,10 +58,18 @@ export class Level2 extends Scene {
     this.player.setImmovable(true);
     this.player.setCollideWorldBounds(true);
 
+    const ballParticles = this.add.particles(0, 0, "ekumenLogo", {
+      speed: 100,
+      scale: { start: 0.015, end: 0 },
+      // blendMode: "ADD",
+    });
+
     // Ball (Starts above paddle)
     this.ball = this.physics.add.sprite(512, 660, "ballImg");
     this.ball.setCollideWorldBounds(true);
     this.ball.setBounce(1, 1);
+
+    ballParticles.startFollow(this.ball);
 
     // Disable collision on the bottom of the world so we can detect "Game Over" manually
     this.physics.world.checkCollision.down = false;
@@ -149,6 +117,38 @@ export class Level2 extends Scene {
         strokeThickness: 8,
       })
       .setOrigin(0.5);
+
+    this.exitBtn = this.add.text(20, 20, "exit", {
+      fontSize: 38,
+      color: "#ffffff",
+      stroke: "#000000",
+      strokeThickness: 8,
+      align: "center",
+    });
+    this.exitBtn.setInteractive({ useHandCursor: true });
+    this.exitBtn.on("pointerdown", () => {
+      this.scene.start("Game");
+    });
+    this.exitBtn.on("pointerover", () =>
+      this.exitBtn.setStyle({ fill: "yellow" })
+    );
+    this.exitBtn.on("pointerout", () =>
+      this.exitBtn.setStyle({ fill: "white" })
+    );
+
+    this.scoreText = this.add.text(800, 20, "Score: 0", {
+      fontSize: "30px",
+      color: "#ffffff",
+      stroke: "#000000",
+      strokeThickness: 8,
+    });
+
+    this.livesText = this.add.text(800, 60, "Lives: 3", {
+      fontSize: "30px",
+      color: "#ffffff",
+      stroke: "#000000",
+      strokeThickness: 8,
+    });
   }
 
   createBricks() {

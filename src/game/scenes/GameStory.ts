@@ -1,5 +1,11 @@
 import { Scene } from "phaser";
 
+const storyText = [
+  "Hello, my name is Andino,\nand I am here to save the\nremaining Ekumembers...",
+  "In the year 2125 the evil AI\n took control of HQ",
+  "I am here to destroy it!",
+];
+
 export class GameStory extends Scene {
   camera: Phaser.Cameras.Scene2D.Camera;
   background: Phaser.GameObjects.Image;
@@ -7,15 +13,18 @@ export class GameStory extends Scene {
   player: Phaser.GameObjects.Sprite;
   keys: any;
   cursors: Phaser.Types.Input.Keyboard.CursorKeys;
+  currentTextIndex: number = 0;
+  currentText: Phaser.GameObjects.Text;
 
   constructor() {
     super("GameStory");
   }
 
   create() {
+    this.currentTextIndex = 0;
     this.camera = this.cameras.main;
 
-    this.background = this.add.image(512, 384, "background");
+    this.background = this.add.image(512, 384, "storyBg");
 
     // Input Events
     if (this.input.keyboard === null) {
@@ -23,7 +32,7 @@ export class GameStory extends Scene {
     }
     this.cursors = this.input.keyboard.createCursorKeys();
 
-    this.player = this.add.sprite(0, 0, "robot");
+    this.player = this.add.sprite(100, 600, "robot");
     this.player.scale = 5;
     this.anims.create({
       key: "walk",
@@ -33,20 +42,36 @@ export class GameStory extends Scene {
     });
     this.player.setOrigin(0.5);
     this.player.play("walk");
-    this.player.setPosition(100, 100);
 
     this.keys = this.input.keyboard?.addKeys("SPACE");
+
+    this.currentText = this.add.text(
+      280,
+      110,
+      storyText[this.currentTextIndex],
+      {
+        fontSize: 28,
+        color: "#ffffff",
+        stroke: "#000000",
+        strokeThickness: 8,
+        align: "center",
+      }
+    );
+
+    this.input.on("pointerdown", () => {
+      this.currentTextIndex++;
+      if (this.currentTextIndex < storyText.length) {
+        this.currentText.text = storyText[this.currentTextIndex];
+      } else {
+        this.scene.start("Game");
+      }
+    });
   }
 
   update(time: number, delta: number): void {
-    // onkeydown((ev: KeyboardEvent) => {
-    //   console.log(ev);
-    // });
     if (this.cursors.up.isDown) {
-      //this.player.setVelocityY(-400);
       this.player.y -= 5;
     } else if (this.cursors.down.isDown) {
-      // this.player.setVelocityY(400);
       this.player.y += 5;
     } else if (this.cursors.left.isDown) {
       this.player.x -= 5;
