@@ -190,16 +190,22 @@ export class Level2 extends Scene {
     const startX = 142; // Center alignment
     const startY = 150;
 
-    for (let y = 0; y < 5; y++) {
+    this.anims.create({
+      key: "idleEnemy",
+      frames: this.anims.generateFrameNumbers("arkanoidEnemy", { frames: [0, 1] }),
+      frameRate: 4,
+      repeat: -1,
+    });
+
+    for (let y = 0; y < 4; y++) {
       for (let x = 0; x < 10; x++) {
         const brickX = startX + x * 80; // 60 width + 20 gap
-        const brickY = startY + y * 50; // 30 height + 20 gap
+        const brickY = startY + y * 70; // 30 height + 20 gap
 
-        const brick = this.bricks.create(brickX, brickY, "brickImg");
+        const brick = this.bricks.create(brickX, brickY, "arkanoidEnemy");
+        brick.scale = 0.7;
+        brick.play("idleEnemy");
 
-        // Color tint based on row
-        const colors = [0xff0000, 0xffa500, 0xffff00, 0xff0000, 0xff0000];
-        brick.setTint(colors[y]);
         brick.refreshBody();
       }
     }
