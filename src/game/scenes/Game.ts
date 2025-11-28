@@ -51,7 +51,33 @@ export class Game extends Scene {
     // Add fabri sprite
     const fabriSprite = this.add.sprite(220, 140, "fabri");
     fabriSprite.play("fabriIdle");
-    fabriSprite.setScale(1.3);
+    fabriSprite.setScale(1.6);
+
+    // Create franco animation
+    this.anims.create({
+      key: "francoIdle",
+      frames: this.anims.generateFrameNumbers("franco", { start: 0, end: -1 }),
+      frameRate: 8,
+      repeat: -1,
+    });
+
+    // Add franco sprite
+    const francoSprite = this.add.sprite(660, 360, "franco");
+    francoSprite.play("francoIdle");
+    francoSprite.setScale(1.6);
+
+    // Create alon animation
+    this.anims.create({
+      key: "alonIdle",
+      frames: this.anims.generateFrameNumbers("alon", { start: 0, end: -1 }),
+      frameRate: 8,
+      repeat: -1,
+    });
+
+    // Add alon sprite
+    const alonSprite = this.add.sprite(500, 100, "alon");
+    alonSprite.play("alonIdle");
+    alonSprite.setScale(1.6);
 
     this.player = this.add.sprite(200, 369, "robot");
     this.anims.create({

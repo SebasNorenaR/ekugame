@@ -46,6 +46,14 @@ export class Boot extends Scene {
       frameWidth: 64,
       frameHeight: 64,
     });
+    this.load.spritesheet("franco", "assets/franco.png", {
+      frameWidth: 64,
+      frameHeight: 64,
+    });
+    this.load.spritesheet("alon", "assets/alon.png", {
+      frameWidth: 64,
+      frameHeight: 64,
+    });
   }
 
   create() {
