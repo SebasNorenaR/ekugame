@@ -9,7 +9,6 @@ const storyText = [
   "Let's go and find the\nmissing README.md pieces!",
 ];
 
-
 export class GameStory extends Scene {
   camera: Phaser.Cameras.Scene2D.Camera;
   background: Phaser.GameObjects.Image;
@@ -36,7 +35,7 @@ export class GameStory extends Scene {
     }
     this.cursors = this.input.keyboard.createCursorKeys();
 
-    this.player = this.add.sprite(100, 600, "robot");
+    this.player = this.add.sprite(0, 600, "robot");
     this.player.scale = 5;
     this.anims.create({
       key: "walk",
@@ -54,7 +53,7 @@ export class GameStory extends Scene {
       storyText[this.currentTextIndex],
       {
         fontSize: 30,
-        color: "#ffffff",
+        color: "yellow",
         stroke: "#000000",
         strokeThickness: 10,
         align: "center",
@@ -69,6 +68,8 @@ export class GameStory extends Scene {
         this.scene.start("Game");
       }
     });
+
+    this.tweens.add({ targets: this.player, x: 100, duration: 1000 });
   }
 
   update(time: number, delta: number): void {

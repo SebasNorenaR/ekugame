@@ -192,7 +192,9 @@ export class Level2 extends Scene {
 
     this.anims.create({
       key: "idleEnemy",
-      frames: this.anims.generateFrameNumbers("arkanoidEnemy", { frames: [0, 1] }),
+      frames: this.anims.generateFrameNumbers("arkanoidEnemy", {
+        frames: [0, 1],
+      }),
       frameRate: 4,
       repeat: -1,
     });
@@ -312,12 +314,12 @@ export class Level2 extends Scene {
     this.gameStarted = false;
     this.ball.setVelocity(0, 0);
     this.player.setVelocity(0, 0);
-    
+
     // Show win elements
     this.readmeImage.setVisible(true);
     this.winMessage.setVisible(true);
     this.instructionsTxt.setVisible(false);
-    
+
     // Set win flag in registry
     this.registry.set("level2Won", true);
   }
