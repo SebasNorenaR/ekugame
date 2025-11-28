@@ -40,7 +40,7 @@ export class Level3 extends Scene {
 
     // Instruction text
     this.instructionText = this.add
-      .text(512, 650, "Enter a number and press ENTER", {
+      .text(512, 750, "Enter a number and press ENTER", {
         fontSize: "28px",
         color: "#ffffff",
         stroke: "#000000",

@@ -13,6 +13,9 @@ export class Level1 extends Scene {
   playerScore: number = 0;
   computerScore: number = 0;
   instructionsTxt: Phaser.GameObjects.Text;
+  readmeImage: Phaser.GameObjects.Image;
+  winMessage: Phaser.GameObjects.Text;
+  hasWon: boolean = false;
 
   constructor() {
     super({
@@ -139,6 +142,29 @@ export class Level1 extends Scene {
     this.exitBtn.on("pointerout", () => {
       this.exitBtn.setStyle({ fill: "white" });
     });
+
+    // Create readme image (initially hidden)
+    this.readmeImage = this.add.image(512, 384, "readmepart");
+    this.readmeImage.setVisible(false);
+    this.readmeImage.setDepth(100); // Ensure it's on top
+    const readmeScaleX = 900 / this.readmeImage.width;
+    const readmeScaleY = 650 / this.readmeImage.height;
+    const readmeScale = Math.min(readmeScaleX, readmeScaleY, 1);
+    this.readmeImage.setScale(readmeScale);
+
+    // Win message (initially hidden)
+    this.winMessage = this.add
+      .text(512, 700, "You Won! Press EXIT to continue", {
+        fontSize: "32px",
+        color: "#ffffffff",
+        stroke: "#000000",
+        strokeThickness: 8,
+      })
+      .setOrigin(0.5)
+      .setDepth(101)
+      .setVisible(false);
+
+    this.hasWon = false;
   }
 
   update(time: number, delta: number) {
@@ -208,9 +234,19 @@ export class Level1 extends Scene {
     this.computer.setVelocity(0, 0);
     this.computer.setPosition(974, 369);
     this.instructionsTxt.visible = true;
-    // Win logic
-    if (this.playerScore >= 2) {
+    
+    // Win logic - show readme when player scores 1 point
+    if (this.playerScore >= 1 && !this.hasWon) {
+      this.hasWon = true;
+      this.showWinScreen();
     }
+  }
+
+  showWinScreen() {
+    this.readmeImage.setVisible(true);
+    this.winMessage.setVisible(true);
+    this.instructionsTxt.setVisible(false);
+    this.gameStarted = false;
   }
 
   launchBall() {

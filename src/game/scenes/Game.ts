@@ -33,9 +33,9 @@ export class Game extends Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
 
     const OBJ_TEXTURE = "objective";
-    this.objectives.push(this.createObjective(400, 340, OBJ_TEXTURE, "Level1"));
+    this.objectives.push(this.createObjective(420, 360, OBJ_TEXTURE, "Level1"));
     this.objectives.push(this.createObjective(580, 180, OBJ_TEXTURE, "Level2"));
-    this.objectives.push(this.createObjective(100, 500, OBJ_TEXTURE, "Level3"));
+    this.objectives.push(this.createObjective(167, 100, OBJ_TEXTURE, "Level3"));
 
     this.player = this.add.sprite(200, 369, "robot");
     this.anims.create({
