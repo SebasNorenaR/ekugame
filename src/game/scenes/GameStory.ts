@@ -72,17 +72,5 @@ export class GameStory extends Scene {
     this.tweens.add({ targets: this.player, x: 100, duration: 1000 });
   }
 
-  update(time: number, delta: number): void {
-    if (this.cursors.up.isDown) {
-      this.player.y -= 5;
-    } else if (this.cursors.down.isDown) {
-      this.player.y += 5;
-    } else if (this.cursors.left.isDown) {
-      this.player.x -= 5;
-      this.player.scaleX = -1;
-    } else if (this.cursors.right.isDown) {
-      this.player.x += 5;
-      this.player.scaleX = 1;
-    }
-  }
+  update(time: number, delta: number): void {}
 }
